@@ -13,7 +13,6 @@ server {
         root   /var/www/taski;
         index  index.html index.htm;
         try_files $uri /index.html;
-
     }
     
     listen 443 ssl; # managed by Certbot
@@ -23,17 +22,15 @@ server {
     ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
 
 }
+
 server {
     if ($host = yerevan-taski.hopto.org) {
         return 301 https://$host$request_uri;
     } # managed by Certbot
 
-
-
     listen 80;
     server_name 130.193.40.153 yerevan-taski.hopto.org;
     return 404; # managed by Certbot
-
 
 }
 
@@ -52,12 +49,11 @@ server {
         root   /var/www/kittygram;
         index  index.html index.htm;
         try_files $uri /index.html;
-
     }
+
     location /media/ {
         alias /var/www/kittygram/media/;
     }
-
 
     listen 443 ssl; # managed by Certbot
     ssl_certificate /etc/letsencrypt/live/yerevan-kittygram.hopto.org/fullchain.pem; # managed by Certbot
@@ -67,16 +63,13 @@ server {
 
 }
 
-
 server {
     if ($host = yerevan-kittygram.hopto.org) {
         return 301 https://$host$request_uri;
     } # managed by Certbot
 
-
     server_name 130.193.40.153 yerevan-kittygram.hopto.org;
     listen 80;
     return 404; # managed by Certbot
-
 
 }
